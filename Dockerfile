@@ -9,4 +9,4 @@ RUN mkdir -p $APP_HOME $APP_HOME/static
 COPY ./toolmaker.conf /etc/nginx/conf.d/
 
 #Copy web static file
-#COPY ./dist $DCMS_HOME/static
+COPY ./dist $APP_HOME/static

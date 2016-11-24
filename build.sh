@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REGISTRY_HOST=registry.chcp.io
-REGISTRY_PORT=30100
+REGISTRY_PORT=5000
 PRODUCT=toolmaker
 
 buildImage()

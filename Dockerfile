@@ -6,7 +6,7 @@ ENV APP_HOME /opt/chcp/toolmaker
 RUN mkdir -p $APP_HOME $APP_HOME/static
 
 #Copy nginx config file
-COPY ./toolmaker.conf /etc/nginx/conf.d/
+COPY ./web.conf /etc/nginx/conf.d/
 
 #Copy web static file
 COPY ./dist $APP_HOME/static

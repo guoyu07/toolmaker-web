@@ -1,6 +1,8 @@
-# system ignore
+# github ignore
 node_modules/
 dist/
+Thumbs.db
+.DS_Store
 npm-debug.log
 selenium-debug.log
 test/unit/coverage

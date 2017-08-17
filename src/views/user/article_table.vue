@@ -226,7 +226,7 @@
       getList() {
         this.listLoading = true;
         fetchList(this.listQuery).then(response => {
-          this.list = response.data.items;
+          this.list = response.data.list;
           this.total = response.data.total;
           this.listLoading = false;
         })

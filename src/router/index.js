@@ -22,8 +22,9 @@ export const constantRouterMap = [
     { path: '/authredirect', component: _import('login/authredirect'), hidden: true },
     { path: '/404', component: _import('error/404'), hidden: true },
     { path: '/401', component: _import('error/401'), hidden: true },
-  {
-    path: '/',
+  { 
+    //path: '/',  //删除'/'，点击Dashboard可用
+    path: '',
     component: Layout,
     redirect: '/dashboard',
     icon: 'xinrenzhinan',

@@ -27,7 +27,7 @@
 
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row style="width: 100%">
 
-      <el-table-column align="center" label="序号1" width="65">
+      <el-table-column align="center" label="序号" width="65">
         <template scope="scope">
           <span>{{scope.row.id}}</span>
         </template>

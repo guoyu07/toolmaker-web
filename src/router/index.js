@@ -30,7 +30,7 @@ export const constantRouterMap = [
     icon: 'xinrenzhinan',
     name: '首页',
     noDropdown: true,
-    children: [{ path: 'dashboard', component: _import('dashboard/index'), name: 'Dashboard', meta: { role: ['admin'] } }]    
+    children: [{ path: 'dashboard', component: _import('dashboard/index'), name: 'Dashboard' }]    
   },
 
   /*
@@ -84,8 +84,9 @@ export const asyncRouterMap = [
     redirect: '/requirement',
     name: '需求管理',
     icon: 'zujian',
+    meta: {role: ['admin', 'editor']},
     children: [
-      { path: 'originalrequirement', component: Table, name: '原始需求', icon: 'zonghe' },
+      { path: 'originalrequirement', component: Table, name: '原始需求', icon: 'zonghe', meta: {role: ['requirement']} },
       { path: 'systemrequirement', component: Table, name: '系统需求', icon: 'zonghe' },
       { path: 'modulerequirement', component: Table, name: '模块需求', icon: 'zonghe' }
     ]

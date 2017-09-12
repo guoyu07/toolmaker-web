@@ -8,31 +8,30 @@
 </template>
 
 <script>
-  import DndList from 'components/twoDndList'
-  import { getList } from 'api/user/article';
+import DndList from '@/components/twoDndList'
+import { fetchList } from '@/api/user/article'
 
-  export default {
-    components: { DndList },
-    data() {
-      return {
-        list1: [],
-        list2: []
-      }
-    },
-    created() {
-      this.fetchData();
-    },
-    methods: {
-      fetchData() {
-        this.listLoading = true;
-        getList(this.listQuery).then(response => {
-          this.list1 = response.data.splice(0, 5);
-          this.list2 = response.data;
-          console.log(this.list1, this.list2)
-        })
-      }
+export default {
+  components: { DndList },
+  data() {
+    return {
+      list1: [],
+      list2: []
     }
-  };
+  },
+  created() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      this.listLoading = true
+      fetchList().then(response => {
+        this.list1 = response.data.items.splice(0, 5)
+        this.list2 = response.data.items
+      })
+    }
+  }
+}
 </script>
 
 

@@ -22,17 +22,21 @@
 </template>
 
 <script>
-  import MdInput from 'components/MDinput';
-  import PanThumb from 'components/PanThumb';
+import MdInput from '@/components/MDinput'
+import PanThumb from '@/components/PanThumb'
+import waves from '@/directive/waves.js' // 水波纹指令
 
-  export default {
-    components: { MdInput, PanThumb },
-    data() {
-      return {
-        title: ''
-      }
+export default {
+  components: { MdInput, PanThumb },
+  directives: {
+    waves
+  },
+  data() {
+    return {
+      title: ''
     }
-  };
+  }
+}
 </script>
 
 <style scoped>

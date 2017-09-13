@@ -1,11 +1,12 @@
-# github ignore
-node_modules/
-dist/
+#system ignore
 Thumbs.db
 .DS_Store
+
+#web ignore
+node_modules/
+dist/
 npm-debug.log
 selenium-debug.log
 test/unit/coverage
 test/e2e/reports
 .idea
-

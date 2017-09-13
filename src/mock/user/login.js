@@ -1,4 +1,4 @@
-import { param2Obj } from 'utils';
+import { param2Obj } from '@/utils'
 
 const userMap = {
   admin: {
@@ -25,17 +25,17 @@ const userMap = {
 }
 
 export default {
-  loginByEmail: config => {
-    const { email } = JSON.parse(config.body);
-    return userMap[email.split('@')[0]];
+  loginByUsername: config => {
+    const { username } = JSON.parse(config.body)
+    return userMap[username]
   },
-  getInfo: config => {
-    const { token } = param2Obj(config.url);
+  getUserInfo: config => {
+    const { token } = param2Obj(config.url)
     if (userMap[token]) {
-      return userMap[token];
+      return userMap[token]
     } else {
-      return Promise.reject('a');
+      return Promise.reject('error')
     }
   },
   logout: () => 'success'
-};
+}

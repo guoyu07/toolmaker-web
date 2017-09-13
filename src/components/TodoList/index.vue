@@ -33,6 +33,7 @@
 
 <script>
 import Todo from './Todo.vue'
+
 const STORAGE_KEY = 'todos'
 const filters = {
   all: todos => todos,
@@ -84,12 +85,10 @@ export default {
       this.setLocalStorgae()
     },
     deleteTodo(todo) {
-      console.log(todo)
       this.todos.splice(this.todos.indexOf(todo), 1)
       this.setLocalStorgae()
     },
     editTodo({ todo, value }) {
-      console.log(todo, value)
       todo.text = value
       this.setLocalStorgae()
     },

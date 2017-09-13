@@ -77,7 +77,8 @@ import lineChart from './lineChart'
 
 export default {
   name: 'dashboard-admin',
-  components: { countTo, panThumb, todoList, Github, pieChart, lineChart, barChart },
+  // components: { countTo, panThumb, todoList, Github, pieChart, lineChart, barChart },
+  components: { countTo, panThumb, todoList, pieChart, lineChart, barChart },
   data() {
     return {
       statisticsData: {

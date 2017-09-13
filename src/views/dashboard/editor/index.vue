@@ -23,7 +23,8 @@ import Github from '@/components/Github'
 
 export default {
   name: 'dashboard-editor',
-  components: { PanThumb, Github },
+	// components: { PanThumb, Github },
+	components: { PanThumb },
   data() {
     return {
       emptyGif: 'https://wpimg.wallstcn.com/0e03b7da-db9e-4819-ba10-9016ddfdaed3'

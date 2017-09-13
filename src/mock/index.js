@@ -1,24 +1,27 @@
-import Mock from 'mockjs';
-import loginAPI from './user/login';
-import userAPI from './user/user';
-import articleAPI from './user/article';
-import article_tableAPI from './user/article_table';
+import Mock from 'mockjs'
+import loginAPI from './user/login'
+import userAPI from './user/user'
+import articleAPI from './user/article'
+import article_tableAPI from './user/article_table'
 
+Mock.setup({
+  timeout: '350-600'
+})
 
 // 登录相关
-Mock.mock(/\/login\/loginbyemail/, 'post', loginAPI.loginByEmail);
-Mock.mock(/\/login\/logout/, 'post', loginAPI.logout);
-Mock.mock(/\/users\/info\.*/, 'get', loginAPI.getInfo)
+Mock.mock(/\/login\/login/, 'post', loginAPI.loginByUsername)
+Mock.mock(/\/login\/logout/, 'post', loginAPI.logout)
+Mock.mock(/\/users\/info\.*/, 'get', loginAPI.getUserInfo)
 
 // User相关
-Mock.mock(/\/users/, 'get', userAPI.getList);
+Mock.mock(/\/users/, 'get', userAPI.getList)
 
 // // 文章相关
-Mock.mock(/\/article\/list/, 'get', articleAPI.getList);
-Mock.mock(/\/article\/detail/, 'get', articleAPI.getArticle);
-
+Mock.mock(/\/article\/list/, 'get', articleAPI.getList)
+Mock.mock(/\/article\/detail/, 'get', articleAPI.getArticle)
+Mock.mock(/\/article\/pv/, 'get', articleAPI.getPv)
 // // table example相关
-Mock.mock(/\/article_table\/list/, 'get', article_tableAPI.getList);
-Mock.mock(/\/article_table\/p/, 'get', article_tableAPI.getPv);
+Mock.mock(/\/article_table\/list/, 'get', article_tableAPI.getList)
+Mock.mock(/\/article_table\/p/, 'get', article_tableAPI.getPv)
 
-export default Mock;
+export default Mock

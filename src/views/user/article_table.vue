@@ -151,7 +151,7 @@
 
 <script>
 import { fetchList, fetchPv } from '@/api/user/article_table'
-import waves from '@/directive/waves.js'// 水波纹指令
+import waves from '@/directive/waves/waves.js'// 水波纹指令
 import { parseTime } from '@/utils'
 
 const calendarTypeOptions = [

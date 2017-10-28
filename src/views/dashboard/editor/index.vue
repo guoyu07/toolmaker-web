@@ -19,12 +19,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import PanThumb from '@/components/PanThumb'
-// import Github from '@/components/Github'
+import Github from '@/components/Github'
 
 export default {
   name: 'dashboard-editor',
-  // components: { PanThumb, Github },
-  components: { PanThumb },
+  components: { PanThumb, Github },
   data() {
     return {
       emptyGif: 'https://wpimg.wallstcn.com/0e03b7da-db9e-4819-ba10-9016ddfdaed3'

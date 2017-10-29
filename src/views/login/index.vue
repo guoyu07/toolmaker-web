@@ -24,7 +24,7 @@
       <div class='tips'>账号:admin 密码随便填</div>
       <div class='tips'>账号:editor  密码随便填</div>
 
-      <el-button class='thirdparty-button' type="primary" @click='showDialog=true'>打开第三方登录</el-button>
+      <!-- el-button class='thirdparty-button' type="primary" @click='showDialog=true'>打开第三方登录</el-button-->
     </el-form>
 
     <el-dialog title="第三方验证" :visible.sync="showDialog">

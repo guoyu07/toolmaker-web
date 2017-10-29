@@ -28,7 +28,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/dashboard',
     name: '首页',
-    icon: 'people',
+    icon: 'chart',
     noDropdown: true,
     // hidden: true,
     children: [{ path: 'dashboard', component: _import('dashboard/index'), name: 'Dashboard' }]
@@ -80,6 +80,19 @@ export const asyncRouterMap = [
   },
 
   {
+    path: '/feature',
+    component: Layout,
+    redirect: '/feature',
+    name: '特性管理',
+    icon: 'component',
+    meta: { role: ['admin', 'editor'] },
+    children: [
+      { path: 'originalrequirement', component: Table, name: '原始需求', icon: 'form', meta: { role: ['requirement'] }},
+      { path: 'systemfeature', component: Table, name: '系统特性', icon: 'form' }
+    ]
+  },
+
+  {
     path: '/requirement',
     component: Layout,
     redirect: '/requirement',
@@ -87,9 +100,8 @@ export const asyncRouterMap = [
     icon: 'component',
     meta: { role: ['admin', 'editor'] },
     children: [
-      { path: 'originalrequirement', component: Table, name: '原始需求', icon: 'zonghe', meta: { role: ['requirement'] }},
-      { path: 'systemrequirement', component: Table, name: '系统需求', icon: 'zonghe' },
-      { path: 'modulerequirement', component: Table, name: '模块需求', icon: 'zonghe' }
+      { path: 'systemrequirement', component: Table, name: '系统需求', icon: 'example' },
+      { path: 'modulerequirement', component: Table, name: '模块需求', icon: 'example' }
     ]
   },
 
@@ -100,7 +112,18 @@ export const asyncRouterMap = [
     name: '设计管理',
     icon: 'component',
     children: [
-      { path: 'systemcomponent', component: Table, name: '系统组件', icon: 'zonghe' }
+      { path: 'systemcomponent', component: Table, name: '系统组件', icon: 'example' }
+    ]
+  },
+
+  {
+    path: '/implement',
+    component: Layout,
+    redirect: '/implement',
+    name: '实现管理',
+    icon: 'component',
+    children: [
+      { path: 'coding', component: Table, name: '编码实现', icon: 'example' }
     ]
   },
 
@@ -111,7 +134,7 @@ export const asyncRouterMap = [
     name: '测试管理',
     icon: 'component',
     children: [
-      { path: 'systemtestcase', component: Table, name: '系统测试用例', icon: 'zonghe' }
+      { path: 'systemtestcase', component: Table, name: '系统测试用例', icon: 'example' }
     ]
   },
 
@@ -122,8 +145,8 @@ export const asyncRouterMap = [
     name: '缺陷管理',
     icon: 'component',
     children: [
-      { path: 'onlinedefect', component: Table, name: '网上缺陷', icon: 'zonghe' },
-      { path: 'defect', component: Table, name: '产品缺陷', icon: 'zonghe' }
+      { path: 'onlinedefect', component: Table, name: '网上缺陷', icon: 'bug' },
+      { path: 'defect', component: Table, name: '产品缺陷', icon: 'bug' }
     ]
   },
 
@@ -134,8 +157,8 @@ export const asyncRouterMap = [
     name: '用户管理',
     icon: 'component',
     children: [
-      { path: 'user', component: _import('user/user'), name: '用户管理', icon: 'zonghe' },
-      { path: 'authority', component: Table, name: '权限管理', icon: 'zonghe' }
+      { path: 'user', component: _import('user/user'), name: '用户管理', icon: 'people' },
+      { path: 'authority', component: Table, name: '权限管理', icon: 'people' }
     ]
   },
 
@@ -147,7 +170,7 @@ export const asyncRouterMap = [
     icon: 'component',
     noDropdown: true,
     children: [
-      { path: 'knowledge', component: Table, name: '知识管理', icon: 'zonghe' }
+      { path: 'knowledge', component: Table, name: '知识管理', icon: 'example' }
     ]
   },
 

@@ -1,6 +1,7 @@
 import Mock from 'mockjs'
 import loginAPI from './user/login'
 import userAPI from './user/user'
+import requirementAPI from './requirement/requirement'
 import articleAPI from './user/article'
 import article_tableAPI from './user/article_table'
 
@@ -15,6 +16,7 @@ Mock.mock(/\/users\/info\.*/, 'get', loginAPI.getUserInfo)
 
 // User相关
 Mock.mock(/\/users/, 'get', userAPI.getList)
+Mock.mock(/\/requirements/, 'get', requirementAPI.getList)
 
 // // 文章相关
 Mock.mock(/\/article\/list/, 'get', articleAPI.getList)

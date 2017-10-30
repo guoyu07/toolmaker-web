@@ -3,7 +3,7 @@ import Router from 'vue-router'
 const _import = require('./_import_' + process.env.NODE_ENV)
 // in development env not use Lazy Loading,because Lazy Loading too many pages will cause webpack hot update too slow.so only in production use Lazy Loading
 
-const Table = _import('user/article_table')
+const Table = _import('toolmaker/user/article_table')
 
 Vue.use(Router)
 
@@ -100,8 +100,8 @@ export const asyncRouterMap = [
     icon: 'component',
     meta: { role: ['admin', 'editor'] },
     children: [
-      { path: 'systemrequirement', component: Table, name: '系统需求', icon: 'example' },
-      { path: 'modulerequirement', component: Table, name: '模块需求', icon: 'example' }
+      { path: 'systemrequirement', component: _import('toolmaker/requirement/requirement'), name: '系统需求', icon: 'example' },
+      { path: 'modulerequirement', component: _import('toolmaker/requirement/requirement'), name: '模块需求', icon: 'example' }
     ]
   },
 
@@ -116,6 +116,7 @@ export const asyncRouterMap = [
     ]
   },
 
+  /*
   {
     path: '/implement',
     component: Layout,
@@ -126,6 +127,7 @@ export const asyncRouterMap = [
       { path: 'coding', component: Table, name: '编码实现', icon: 'example' }
     ]
   },
+  */
 
   {
     path: '/test',
@@ -157,7 +159,7 @@ export const asyncRouterMap = [
     name: '用户管理',
     icon: 'component',
     children: [
-      { path: 'user', component: _import('user/user'), name: '用户管理', icon: 'people' },
+      { path: 'user', component: _import('toolmaker/user/user'), name: '用户管理', icon: 'people' },
       { path: 'authority', component: Table, name: '权限管理', icon: 'people' }
     ]
   },

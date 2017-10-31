@@ -1,9 +1,9 @@
 import Mock from 'mockjs'
-import loginAPI from './user/login'
-import userAPI from './user/user'
-import requirementAPI from './requirement/requirement'
-import articleAPI from './user/article'
-import article_tableAPI from './user/article_table'
+import loginAPI from './login'
+import userAPI from './user'
+import requirementAPI from './requirement'
+import articleAPI from './article'
+import article_tableAPI from './article_table'
 
 Mock.setup({
   timeout: '350-600'

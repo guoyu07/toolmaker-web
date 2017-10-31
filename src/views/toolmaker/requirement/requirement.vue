@@ -24,7 +24,7 @@
       <el-button class="filter-item" type="primary" icon="document" @click="handleDownload">导出</el-button>
     </div>
 
-    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%">
+    <el-table :key='tableKey' :data="list" stripe v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" sortable  width="90" label="编码">
         <template scope="scope">
           <span>{{scope.row.id}}</span>

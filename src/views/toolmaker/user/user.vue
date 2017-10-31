@@ -25,7 +25,7 @@
       <el-checkbox class="filter-item" @change='tableKey=tableKey+1' v-model="showMobilePhone">显示移动电话</el-checkbox>
     </div>
 
-    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%">
+    <el-table :key='tableKey' :data="list" stripe v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="序号" width="65">
         <template scope="scope">
           <span>{{scope.row.id}}</span>

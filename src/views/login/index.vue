@@ -20,9 +20,11 @@
       </el-form-item>
 
       <el-button type="primary" style="width:100%;margin-bottom:30px;" :loading="loading" @click.native.prevent="handleLogin">登录</el-button>
-
+      
+      <!--
       <div class='tips'>账号:admin 密码随便填</div>
       <div class='tips'>账号:editor  密码随便填</div>
+      -->
 
       <!-- el-button class='thirdparty-button' type="primary" @click='showDialog=true'>打开第三方登录</el-button-->
     </el-form>
@@ -61,7 +63,7 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: '1111111'
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],

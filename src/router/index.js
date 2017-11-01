@@ -116,7 +116,6 @@ export const asyncRouterMap = [
     ]
   },
 
-  /*
   {
     path: '/implement',
     component: Layout,
@@ -124,10 +123,9 @@ export const asyncRouterMap = [
     name: '实现管理',
     icon: 'component',
     children: [
-      { path: 'coding', component: Table, name: '编码实现', icon: 'example' }
+      { path: 'coding', component: Table, name: '编码规范', icon: 'example' }
     ]
   },
-  */
 
   {
     path: '/test',

@@ -37,13 +37,17 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="250px" align="center" label="需求描述">
+      <el-table-column width="250px" align="center" label="需求描述" show-overflow-tooltip="true">
         <template scope="scope">
           <span>{{scope.row.intro}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="80px" label="重要性">
+      <el-table-column width="80px" label="重要性"
+        :filters="[{ text: '家', value: '家' }, { text: '公司', value: '公司' }]"
+        :filter-method="filterTag"
+        filter-placement="bottom-end">
+      >
         <template scope="scope">
           <icon-svg v-for="n in +scope.row.importance" icon-class="wujiaoxing" class="meta-item__icon" :key="n"></icon-svg>
         </template>
@@ -171,6 +175,9 @@ export default {
     this.getList()
   },
   methods: {
+    filterTag(value, row) {
+      return row.tag === value
+    },
     getList() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {

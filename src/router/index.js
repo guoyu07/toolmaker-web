@@ -174,6 +174,18 @@ export const asyncRouterMap = [
     ]
   },
 
+  {
+    path: '/settings',
+    component: Layout,
+    redirect: '/settings',
+    name: '设置',
+    icon: 'component',
+    noDropdown: true,
+    children: [
+      { path: 'settings', component: Table, name: '设置', icon: 'example' }
+    ]
+  },
+
   { path: '*', redirect: '/404', hidden: true }
 
   /*

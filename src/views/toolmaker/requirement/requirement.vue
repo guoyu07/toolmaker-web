@@ -1,8 +1,18 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="filter-container">
-      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="标题" v-model="listQuery.title">
+      <el-input @keyup.enter.native="handleFilter" style="width: 50px;" class="filter-item" placeholder="编码" v-model="listQuery.id">
       </el-input>
+      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="名称" v-model="listQuery.name">
+      </el-input>
+      <el-input @keyup.enter.native="handleFilter" style="width: 100px;" class="filter-item" placeholder="创建者" v-model="listQuery.creator">
+      </el-input>
+
+      <el-input @keyup.enter.native="handleFilter" style="width: 100px;" class="filter-item" placeholder="起始日期" v-model="listQuery.created_date">
+      </el-input>
+      <el-input @keyup.enter.native="handleFilter" style="width: 100px;" class="filter-item" placeholder="结束日期" v-model="listQuery.created_date">
+      </el-input>
+
 
       <!--
       <el-select clearable style="width: 90px" class="filter-item" v-model="listQuery.importance" placeholder="重要性">
@@ -25,6 +35,12 @@
       <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
       <el-button class="filter-item" type="primary" icon="document" @click="handleDownload">导出</el-button>
     </div>
+
+    <!--div v-show="!listLoading" class="pagination-container"-->
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.page"
+        :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
+      </el-pagination>
+    <!--/div-->
 
     <el-table :key='tableKey' :data="list" stripe v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" sortable  width="90" label="编码">

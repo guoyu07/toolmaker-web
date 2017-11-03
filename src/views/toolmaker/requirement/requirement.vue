@@ -33,35 +33,44 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="120px" sortable label="需求名称">
+      <el-table-column min-width="130px" sortable label="需求名称">
         <template scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.name}}</span>
+          <span class="link-type" @click="handleUpdate(scope.row)"> {{scope.row.name}} </span>
         </template>
       </el-table-column>
 
       <el-table-column width="250px" align="center" label="需求描述" show-overflow-tooltip="true">
         <template scope="scope">
-          <span>{{scope.row.intro}}</span>
+          <span  class="link-type" @click="handleUpdate(scope.row)"> {{scope.row.intro}} </span>
         </template>
       </el-table-column>
 
-      <el-table-column width="80px" label="重要性"
-        :filters="[{ text: '家', value: '家' }, { text: '公司', value: '公司' }]"
+      <el-table-column width="100px" label="重要性"
+        :filters="[{ text: '必须', value: 'mandatory' }, { text: '重要', value: 'important' }, { text: '建议', value: 'proposal' }]"
         :filter-method="filterTag"
         filter-placement="bottom-end">
-      >
+
         <template scope="scope">
-          <icon-svg v-for="n in +scope.row.importance" icon-class="wujiaoxing" class="meta-item__icon" :key="n"></icon-svg>
+          <el-tag :type="scope.row.importance | statusFilter">{{scope.row.importance}}</el-tag>
+          <!-- icon-svg v-for="n in +scope.row.importance" icon-class="wujiaoxing" class="meta-item__icon" :key="n"></icon-svg-->
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" label="类型" width="90">
+      <el-table-column class-name="status-col" label="类型" width="100"
+        :filters="[{ text: '功能需求', value: 'functional' }, { text: '非功能需求', value: 'unfunctional' }]"
+        :filter-method="filterTag"
+        filter-placement="bottom-end">
+
         <template scope="scope">
           <el-tag :type="scope.row.type | statusFilter">{{scope.row.type}}</el-tag>
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" label="状态" width="90">
+      <el-table-column class-name="status-col" label="状态" width="90"
+        :filters="[{ text: '草稿', value: 'draft' }, { text: '已评审', value: 'published' }, { text: '已删除', value: 'deleted' }]"
+        :filter-method="filterTag"
+        filter-placement="bottom-end">
+
         <template scope="scope">
           <el-tag :type="scope.row.status | statusFilter">{{scope.row.status}}</el-tag>
         </template>

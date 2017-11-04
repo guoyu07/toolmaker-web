@@ -8,11 +8,13 @@
       <el-input @keyup.enter.native="handleFilter" style="width: 100px;" class="filter-item" placeholder="创建者" v-model="listQuery.creator">
       </el-input>
 
-      <el-input @keyup.enter.native="handleFilter" style="width: 100px;" class="filter-item" placeholder="起始日期" v-model="listQuery.created_date">
-      </el-input>
-      <el-input @keyup.enter.native="handleFilter" style="width: 100px;" class="filter-item" placeholder="结束日期" v-model="listQuery.created_date">
-      </el-input>
-
+    <el-date-picker
+        v-model="value6"
+        type="daterange"
+        range-separator="至"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期">
+    </el-date-picker>
 
       <!--
       <el-select clearable style="width: 90px" class="filter-item" v-model="listQuery.importance" placeholder="重要性">
@@ -182,7 +184,8 @@ export default {
       dialogPvVisible: false,
       pvData: [],
       showAuditor: false,
-      tableKey: 0
+      tableKey: 0,
+      value6: ''
     }
   },
   filters: {

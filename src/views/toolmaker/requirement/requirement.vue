@@ -33,8 +33,7 @@
       </el-select>
       -->
 
-      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
-      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">刷新</el-button>
+      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">查询/刷新</el-button>
       <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
       <el-button class="filter-item" type="primary" icon="document" @click="handleDownload">导出</el-button>
     </div>

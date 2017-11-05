@@ -1,7 +1,7 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="filter-container">
-      <el-input @keyup.enter.native="handleFilter" style="width: 60px;" class="filter-item" placeholder="编码" v-model="listQuery.id">
+      <el-input @keyup.enter.native="handleFilter" style="width: 60px;" class="filter-item" placeholder="需求编码" v-model="listQuery.id">
       </el-input>
       <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="需求描述" v-model="listQuery.name">
       </el-input>

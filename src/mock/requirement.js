@@ -6,16 +6,14 @@ const count = 100
 
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
-    id: '@increment',
-    name: '@ctitle(5, 10)',
-    intro: '@ctitle(10, 20)',
+    'id': '@increment',
+    'name': '@ctitle(5, 10)',
+    'intro': '@ctitle(10, 20)',
     'importance|1': ['mandatory', 'important', 'proposal'],
-    // 'importance|1': ['必须', '重要', '建议'],
-    // importance: '@integer(1, 3)',
-    'type|1': ['功能需求', '非功能需求'],
+    'type|1': ['functional', 'unfunctional'],
     'status|1': ['published', 'draft', 'deleted'],
-    creator: '@cname',
-    created_date: '@datetime'
+    'creator': '@cname',
+    'created_date': '@datetime'
   }))
 }
 

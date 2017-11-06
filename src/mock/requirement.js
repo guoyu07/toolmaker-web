@@ -21,11 +21,13 @@ for (let i = 0; i < count; i++) {
 
 export default {
   getList: config => {
-    const { importance, type, title, page, limit, sort } = param2Obj(config.url)
+    const { id, intro, creator, page, limit, sort } = param2Obj(config.url)
     let mockList = List.filter(item => {
-      if (importance && item.importance !== +importance) return false
-      if (type && item.type !== type) return false
-      if (title && item.title.indexOf(title) < 0) return false
+      // +id 什么意思
+      if (id && item.id !== +id) return false
+      // 查询需求名称和描述
+      if (intro && item.intro.indexOf(intro) < 0 && item.name.indexOf(intro) < 0) return false
+      if (creator && item.creator !== creator) return false
       return true
     })
     if (sort === '-id') {

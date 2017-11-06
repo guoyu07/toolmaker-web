@@ -80,13 +80,13 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" width="110px" label="创建者">
+      <el-table-column align="center" width="100px" label="创建者">
         <template scope="scope">
           <span>{{scope.row.creator}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" width="150px" sortable label="创建日期">
+      <el-table-column align="center" width="170px" sortable label="创建日期">
         <template scope="scope">
           <span>{{scope.row.created_date | parseTime('{y}-{m}-{d} {h}:{i}:{s}')}}</span>
         </template>

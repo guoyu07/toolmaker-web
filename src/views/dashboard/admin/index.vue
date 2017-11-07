@@ -1,6 +1,7 @@
 <template>
 	<div class="dashboard-editor-container">
 		<github></github>
+		<!--
 		<el-row class="btn-group">
 			<el-col :span="4" class='text-center'>
 				<router-link class="pan-btn blue-btn" to="/components/index">Components</router-link>
@@ -21,6 +22,7 @@
 				<router-link class="pan-btn yellow-btn" to="/theme/index">Theme</router-link>
 			</el-col>
 		</el-row>
+		-->
 
 		<el-row>
 			<el-col :span="6">
@@ -34,12 +36,12 @@
 					<div class="info-item">
 						<count-to class="info-item-num" :startVal='0' :endVal='statisticsData.article_count' :duration='3400'></count-to>
 						<span class="info-item-text">文章</span>
-						<icon-svg icon-class="a" class="dashboard-editor-icon"></icon-svg>
+						<icon-svg icon-class="trendChart1" class="dashboard-editor-icon"></icon-svg>
 					</div>
 					<div class="info-item">
 						<count-to class="info-item-num" :startVal='0' :endVal='statisticsData.pageviews_count' :duration='3600'></count-to>
 						<span class="info-item-text">浏览量</span>
-						<icon-svg icon-class="b" class="dashboard-editor-icon"></icon-svg>
+						<icon-svg icon-class="trendChart2" class="dashboard-editor-icon"></icon-svg>
 					</div>
 				</el-card>
 			</el-col>

@@ -22,7 +22,7 @@
       <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
       <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
       <el-button class="filter-item" type="primary" icon="document" @click="handleDownload">导出</el-button>
-      <el-checkbox class="filter-item" @change='tableKey=tableKey+1' v-model="showMobilePhone">显示移动电话</el-checkbox>
+      <el-checkbox class="filter-item" @change='tableKey=tableKey+1' v-model="showAuditor">显示审核人</el-checkbox>
     </div>
 
     <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%">
@@ -33,39 +33,40 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="100px" align="center" label="用户名">
+      <el-table-column width="180px" align="center" label="时间">
         <template scope="scope">
-          <span>{{scope.row.userName}}</span>
+          <span>{{scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="65px" align="center" label="性别">
+      <el-table-column min-width="300px" label="标题">
         <template scope="scope">
-          <span>{{scope.row.gender}}</span>
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.title}}</span>
+          <el-tag>{{scope.row.type | typeFilter}}</el-tag>
         </template>
       </el-table-column>
 
-      <el-table-column width="200px" align="center" label="介绍">
+      <el-table-column width="110px" align="center" label="作者">
         <template scope="scope">
-          <span>{{scope.row.intro}}</span>
+          <span>{{scope.row.author}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180px" align="center" label="邮箱">
+      <el-table-column width="110px" v-if='showAuditor' align="center" label="审核人">
         <template scope="scope">
-          <span>{{scope.row.email}}</span>
+          <span style='color:red;'>{{scope.row.auditor}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="110px" align="center" label="办公电话">
+      <el-table-column width="80px" label="重要性">
         <template scope="scope">
-          <span>{{scope.row.officePhone}}</span>
+          <icon-svg v-for="n in +scope.row.importance" icon-class="wujiaoxing" class="meta-item__icon" :key="n"></icon-svg>
         </template>
       </el-table-column>
 
-      <el-table-column width="110px" v-if='showMobilePhone' align="center" label="移动电话">
+      <el-table-column align="center" label="阅读数" width="95">
         <template scope="scope">
-          <span style='color:red;'>{{scope.row.mobilePhone}}</span>
+          <span class="link-type" @click='handleFetchPv(scope.row.pageviews)'>{{scope.row.pageviews}}</span>
         </template>
       </el-table-column>
 
@@ -94,12 +95,63 @@
       </el-pagination>
     </div>
 
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+      <el-form class="small-space" :model="temp" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
+        <el-form-item label="类型">
+          <el-select class="filter-item" v-model="temp.type" placeholder="请选择">
+            <el-option v-for="item in  calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key">
+            </el-option>
+          </el-select>
+        </el-form-item>
+
+        <el-form-item label="状态">
+          <el-select class="filter-item" v-model="temp.status" placeholder="请选择">
+            <el-option v-for="item in  statusOptions" :key="item" :label="item" :value="item">
+            </el-option>
+          </el-select>
+        </el-form-item>
+
+        <el-form-item label="时间">
+          <el-date-picker v-model="temp.timestamp" type="datetime" placeholder="选择日期时间">
+          </el-date-picker>
+        </el-form-item>
+
+        <el-form-item label="标题">
+          <el-input v-model="temp.title"></el-input>
+        </el-form-item>
+
+        <el-form-item label="重要性">
+          <el-rate style="margin-top:8px;" v-model="temp.importance" :colors="['#99A9BF', '#F7BA2A', '#FF9900']"></el-rate>
+        </el-form-item>
+
+        <el-form-item label="点评">
+          <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入内容" v-model="temp.remark">
+          </el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button v-if="dialogStatus=='create'" type="primary" @click="create">确 定</el-button>
+        <el-button v-else type="primary" @click="update">确 定</el-button>
+      </div>
+    </el-dialog>
+
+    <el-dialog title="阅读数统计" :visible.sync="dialogPvVisible" size="small">
+      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
+        <el-table-column prop="key" label="渠道"> </el-table-column>
+        <el-table-column prop="pv" label="pv"> </el-table-column>
+      </el-table>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogPvVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
   </div>
 </template>
 
 <script>
-import { fetchList } from '@/api/user/user'
-import waves from '@/directive/waves.js'// 水波纹指令
+import { fetchList, fetchPv } from '@/api/user/article_table'
+import waves from '@/directive/waves/waves.js'// 水波纹指令
 import { parseTime } from '@/utils'
 
 const calendarTypeOptions = [
@@ -271,6 +323,12 @@ export default {
         status: 'published',
         type: ''
       }
+    },
+    handleFetchPv(pv) {
+      fetchPv(pv).then(response => {
+        this.pvData = response.data.pvData
+        this.dialogPvVisible = true
+      })
     },
     handleDownload() {
       require.ensure([], () => {

@@ -17,6 +17,8 @@
       <el-button class="filter-item" type="primary" icon="document" @click="handleDownload">导出</el-button>
     </div>
 
+    <el-col :span="5" style="width: 160px;text-align: left;">已选择{{ activeNum }}个需求</el-col>
+        
     <!--Pagination-->
     <!--div v-show="!listLoading" class="pagination-container"-->
       <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.page"
@@ -29,70 +31,70 @@
       stripe v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row 
       style="width: 100%" @selection-change="handleSelectionChange">
     
-      <el-table-column type="selection" width="40"></el-table-column>
+      <!--多选框-->
+      <el-table-column type="selection" width="40px"></el-table-column>
 
-      <el-table-column sortable align="center" width="90" prop="id" label="编码">
+	  <!--ID的两种写法-->
+      <el-table-column sortable align="center" width="90px" prop="id" label="编码">
         <!--template scope="scope">
           <span>{{scope.row.id}}</span>
         </template-->
       </el-table-column>
 
-      <el-table-column min-width="130px" label="需求名称">
-        <template scope="scope">
+      <el-table-column width="150px" prop="name" label="需求名称">
+        <!--template scope="scope">
           <span class="link-type" @click="handleUpdate(scope.row)"> {{scope.row.name}} </span>
-        </template>
+        </template-->
       </el-table-column>
 
-      <el-table-column width="250px" show-overflow-tooltip="true" label="需求描述">
-        <template scope="scope">
+      <el-table-column width="250px" show-overflow-tooltip="true" prop="intro" label="需求描述">
+        <!--template scope="scope">
           <span  class="link-type" @click="handleUpdate(scope.row)"> {{scope.row.intro}} </span>
-        </template>
+        </template-->
       </el-table-column>
 
-      <el-table-column align="center" width="100px" label="重要性"
+      <!--过滤方法一定要定义prop--> 
+      <el-table-column align="center" width="100px" prop="importance" label="重要性"
         :filters="[{ text: 'mandatory', value: 'mandatory' }, { text: 'important', value: 'important' }, { text: 'proposal', value: 'proposal' }]"
-        :filter-method="filterTag"
-        filter-placement="bottom-end">
+        :filter-method="filterImportance" filter-placement="bottom-end">
 
-        <template scope="scope">
+        <!--template scope="scope">
           <el-tag :type="scope.row.importance | statusFilter">{{scope.row.importance}}</el-tag>
           <!-- icon-svg v-for="n in +scope.row.importance" icon-class="wujiaoxing" class="meta-item__icon" :key="n"></icon-svg-->
-        </template>
+        </template-->
       </el-table-column>
 
-      <el-table-column class-name="status-col"  width="100" label="类型"
+      <el-table-column class-name="status-col"  width="100px" prop="type" label="类型"
         :filters="[{ text: 'functional', value: 'functional' }, { text: 'unfunctional', value: 'unfunctional' }]"
-        :filter-method="filterTag"
-        filter-placement="bottom-end">
+        :filter-method="filterType" filter-placement="bottom-end">
 
-        <template scope="scope">
+        <!--template scope="scope">
           <el-tag :type="scope.row.type | statusFilter">{{scope.row.type}}</el-tag>
-        </template>
+        </template-->
       </el-table-column>
 
-      <el-table-column class-name="status-col" width="90" label="状态" 
+      <el-table-column class-name="status-col" width="90px" prop="status" label="状态" 
         :filters="[{ text: 'draft', value: 'draft' }, { text: 'published', value: 'published' }, { text: 'deleted', value: 'deleted' }]"
-        :filter-method="filterTag"
-        filter-placement="bottom-end">
+        :filter-method="filterStatus" filter-placement="bottom-end">
 
-        <template scope="scope">
+        <!--template scope="scope">
           <el-tag :type="scope.row.status | statusFilter">{{scope.row.status}}</el-tag>
-        </template>
+        </template-->
       </el-table-column>
 
-      <el-table-column align="center" width="100px" label="创建者">
-        <template scope="scope">
+      <el-table-column align="center" width="100px" prop="creator" label="创建者">
+        <!--template scope="scope">
           <span>{{scope.row.creator}}</span>
-        </template>
+        </template-->
       </el-table-column>
 
-      <el-table-column align="center" width="170px" sortable label="创建日期">
-        <template scope="scope">
+      <el-table-column align="center" width="170px" sortable prop="created_date" label="创建日期">
+        <!--template scope="scope">
           <span>{{scope.row.created_date | parseTime('{y}-{m}-{d} {h}:{i}:{s}')}}</span>
-        </template>
+        </template-->
       </el-table-column>
 
-      <el-table-column align="center" width="150" label="操作" >
+      <el-table-column align="center" width="150px" label="操作" >
         <template scope="scope">
           <el-button v-if="scope.row.status!='published'" size="small" type="success" @click="handleModifyStatus(scope.row,'published')">编辑
           </el-button>
@@ -104,11 +106,14 @@
       </el-table-column>
     </el-table>
 
-    <div v-show="!listLoading" class="pagination-container">
+    <!--两种显示方法-->
+    <!--div v-show="!listLoading" class="pagination-container"-->
+    <el-row type="flex" justify="start" style="padding:20px 0; ">    
       <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.page"
         :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
       </el-pagination>
-    </div>
+    </el-row>  
+    <!--/div-->
   </div>
 </template>
 
@@ -158,6 +163,8 @@ export default {
         type: '',
         status: 'published'
       },
+      // 选择的需求数目
+      activeNum: 0,
       importanceOptions: [1, 2, 3],
       calendarTypeOptions,
       sortOptions: [{ label: '按ID升序列', key: '+id' }, { label: '按ID降序', key: '-id' }],
@@ -192,11 +199,29 @@ export default {
     this.getList()
   },
   methods: {
-    filterTag(value, row) {
+    // 多选处理函数
+    handleSelectionChange(val) {
+      // 以前的多选语句
+      this.multipleSelection = val
+      // 新函数的多选语句
+      var arr = []
+      val.forEach(function(item) {
+        arr.push(item.id)
+      })
+      this.selectItems = arr
+      this.activeNum = this.selectItems.length
+    },
+    // importance过滤处理函数
+    filterImportance(value, row) {
       return row.importance === value
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val
+    // type过滤处理函数
+    filterType(value, row) {
+      return row.type === value
+    },
+    // status过滤处理函数
+    filterStatus(value, row) {
+      return row.status === value
     },
     getList() {
       this.listLoading = true

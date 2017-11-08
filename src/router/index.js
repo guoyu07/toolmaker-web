@@ -65,7 +65,7 @@ export const asyncRouterMap = [
     path: '/product',
     component: Layout,
     redirect: '/product',
-    name: '产品',
+    name: '产  品',
     icon: 'component'
     /*
     children: [
@@ -83,7 +83,7 @@ export const asyncRouterMap = [
     path: '/feature',
     component: Layout,
     redirect: '/feature',
-    name: '特性',
+    name: '特  性',
     icon: 'component',
     meta: { role: ['admin', 'editor'] },
     children: [
@@ -96,7 +96,7 @@ export const asyncRouterMap = [
     path: '/requirement',
     component: Layout,
     redirect: '/requirement',
-    name: '需求',
+    name: '需  求',
     icon: 'component',
     meta: { role: ['admin', 'editor'] },
     children: [
@@ -109,7 +109,7 @@ export const asyncRouterMap = [
     path: '/design',
     component: Layout,
     redirect: '/design',
-    name: '设计',
+    name: '设  计',
     icon: 'component',
     children: [
       { path: 'systemcomponent', component: Table, name: '系统组件', icon: 'example' }
@@ -120,7 +120,7 @@ export const asyncRouterMap = [
     path: '/implement',
     component: Layout,
     redirect: '/implement',
-    name: '实现',
+    name: '实  现',
     icon: 'component',
     children: [
       { path: 'coding', component: Table, name: '编码规范', icon: 'example' }
@@ -131,7 +131,7 @@ export const asyncRouterMap = [
     path: '/testcase',
     component: Layout,
     redirect: '/testcase',
-    name: '测试',
+    name: '测  试',
     icon: 'component',
     children: [
       { path: 'systemtestcase', component: Table, name: '系统测试用例', icon: 'example' }
@@ -142,7 +142,7 @@ export const asyncRouterMap = [
     path: '/defect',
     component: Layout,
     redirect: '/defect',
-    name: '缺陷',
+    name: '缺  陷',
     icon: 'component',
     children: [
       { path: 'onlinedefect', component: Table, name: '网上缺陷', icon: 'bug' },
@@ -154,7 +154,7 @@ export const asyncRouterMap = [
     path: '/knowledge',
     component: Layout,
     redirect: '/knowledge',
-    name: '知识',
+    name: '知  识',
     icon: 'component',
     noDropdown: true,
     children: [
@@ -166,7 +166,7 @@ export const asyncRouterMap = [
     path: '/settings',
     component: Layout,
     redirect: '/settings',
-    name: '设置',
+    name: '设  置',
     icon: 'component',
     children: [
       { path: 'user', component: _import('toolmaker/user/user'), name: '用户', icon: 'people' },

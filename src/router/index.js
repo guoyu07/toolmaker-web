@@ -65,7 +65,7 @@ export const asyncRouterMap = [
     path: '/product',
     component: Layout,
     redirect: '/product',
-    name: '产品管理',
+    name: '产品',
     icon: 'component'
     /*
     children: [
@@ -83,7 +83,7 @@ export const asyncRouterMap = [
     path: '/feature',
     component: Layout,
     redirect: '/feature',
-    name: '特性管理',
+    name: '特性',
     icon: 'component',
     meta: { role: ['admin', 'editor'] },
     children: [
@@ -96,7 +96,7 @@ export const asyncRouterMap = [
     path: '/requirement',
     component: Layout,
     redirect: '/requirement',
-    name: '需求管理',
+    name: '需求',
     icon: 'component',
     meta: { role: ['admin', 'editor'] },
     children: [
@@ -109,7 +109,7 @@ export const asyncRouterMap = [
     path: '/design',
     component: Layout,
     redirect: '/design',
-    name: '设计管理',
+    name: '设计',
     icon: 'component',
     children: [
       { path: 'systemcomponent', component: Table, name: '系统组件', icon: 'example' }
@@ -120,7 +120,7 @@ export const asyncRouterMap = [
     path: '/implement',
     component: Layout,
     redirect: '/implement',
-    name: '实现管理',
+    name: '实现',
     icon: 'component',
     children: [
       { path: 'coding', component: Table, name: '编码规范', icon: 'example' }
@@ -128,10 +128,10 @@ export const asyncRouterMap = [
   },
 
   {
-    path: '/test',
+    path: '/testcase',
     component: Layout,
-    redirect: '/test',
-    name: '测试管理',
+    redirect: '/testcase',
+    name: '测试',
     icon: 'component',
     children: [
       { path: 'systemtestcase', component: Table, name: '系统测试用例', icon: 'example' }
@@ -142,7 +142,7 @@ export const asyncRouterMap = [
     path: '/defect',
     component: Layout,
     redirect: '/defect',
-    name: '缺陷管理',
+    name: '缺陷',
     icon: 'component',
     children: [
       { path: 'onlinedefect', component: Table, name: '网上缺陷', icon: 'bug' },
@@ -151,26 +151,14 @@ export const asyncRouterMap = [
   },
 
   {
-    path: '/user',
-    component: Layout,
-    redirect: '/user',
-    name: '用户管理',
-    icon: 'component',
-    children: [
-      { path: 'user', component: _import('toolmaker/user/user'), name: '用户管理', icon: 'people' },
-      { path: 'authority', component: Table, name: '权限管理', icon: 'people' }
-    ]
-  },
-
-  {
     path: '/knowledge',
     component: Layout,
     redirect: '/knowledge',
-    name: '知识管理',
+    name: '知识',
     icon: 'component',
     noDropdown: true,
     children: [
-      { path: 'knowledge', component: Table, name: '知识管理', icon: 'example' }
+      { path: 'knowledge', component: Table, name: '知识', icon: 'example' }
     ]
   },
 
@@ -180,9 +168,9 @@ export const asyncRouterMap = [
     redirect: '/settings',
     name: '设置',
     icon: 'component',
-    noDropdown: true,
     children: [
-      { path: 'settings', component: Table, name: '设置', icon: 'example' }
+      { path: 'user', component: _import('toolmaker/user/user'), name: '用户', icon: 'people' },
+      { path: 'authority', component: _import('toolmaker/user/user'), name: '权限', icon: 'people' }
     ]
   },
 

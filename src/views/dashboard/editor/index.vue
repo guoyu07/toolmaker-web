@@ -4,7 +4,8 @@
       <pan-thumb style="float: left" :image="avatar"> 你的权限:
         <span class="pan-info-roles" :key='item' v-for="item in roles">{{item}}</span>
       </pan-thumb>
-      <github></github>
+      <!--不显示Github链接-->
+      <!--github></github-->
       <div class="info-container">
         <span class="display_name">{{name}}</span>
         <span style='font-size:20px;padding-top:20px;display:inline-block;'>普通编辑dashboard</span>

@@ -1,7 +1,7 @@
 <template>
 	<div class="dashboard-editor-container">
+	    <!--不显示Github和其他控件链接	    
 		<github></github>
-		<!--
 		<el-row class="btn-group">
 			<el-col :span="4" class='text-center'>
 				<router-link class="pan-btn blue-btn" to="/components/index">Components</router-link>

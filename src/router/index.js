@@ -158,7 +158,7 @@ export const asyncRouterMap = [
     icon: 'component',
     noDropdown: true,
     children: [
-      { path: 'knowledge', component: Table, name: '知识', icon: 'example' }
+      { path: 'knowledge', component: Table, name: '知  识', icon: 'example' }
     ]
   },
 
